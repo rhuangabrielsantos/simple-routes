@@ -129,8 +129,8 @@ final class Router
         $requestURI = explode('/', $requestURI);
 
         return [
-            'endpoint' => '/' . $requestURI[1],
-            'id' => $requestURI[2]
+            'endpoint' => '/' . $requestURI[1] ?? null,
+            'id' => $requestURI[2] ?? null
         ];
     }
 
