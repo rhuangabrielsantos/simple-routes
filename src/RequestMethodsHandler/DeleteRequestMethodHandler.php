@@ -1,11 +1,11 @@
 <?php
 
-namespace Router\RequestMethodsHandler;
+namespace SimpleRoutes\RequestMethodsHandler;
 
 use Exception;
 use ReflectionException;
 use ReflectionMethod;
-use Router\Enum\StatusCode;
+use SimpleRoutes\Enum\StatusCode;
 
 final class DeleteRequestMethodHandler implements RequestMethodHandler
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace RouterTests\RequestMethodsHandler;
+namespace SimpleRoutesTests\RequestMethodsHandler;
 
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
-use Router\Enum\StatusCode;
-use Router\RequestMethodsHandler\DeleteRequestMethodHandler;
+use SimpleRoutes\Enum\StatusCode;
+use SimpleRoutes\RequestMethodsHandler\DeleteRequestMethodHandler;
 
 final class DeleteRequestMethodHandlerTest extends TestCase
 {

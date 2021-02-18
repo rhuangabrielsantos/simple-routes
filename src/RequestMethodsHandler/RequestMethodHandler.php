@@ -1,6 +1,6 @@
 <?php
 
-namespace Router\RequestMethodsHandler;
+namespace SimpleRoutes\RequestMethodsHandler;
 
 interface RequestMethodHandler
 {

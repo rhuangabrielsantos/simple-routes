@@ -2,7 +2,7 @@
 
 namespace Mocks;
 
-use Router\Enum\StatusCode;
+use SimpleRoutes\Enum\StatusCode;
 
 final class UserController
 {

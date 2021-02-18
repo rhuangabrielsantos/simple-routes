@@ -1,11 +1,11 @@
 <?php
 
-namespace RouterTests\RequestMethodsHandler;
+namespace SimpleRoutesTests\RequestMethodsHandler;
 
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
-use Router\Enum\StatusCode;
-use Router\RequestMethodsHandler\PutRequestMethodHandler;
+use SimpleRoutes\Enum\StatusCode;
+use SimpleRoutes\RequestMethodsHandler\PutRequestMethodHandler;
 
 final class PutRequestMethodHandlerTest extends TestCase
 {

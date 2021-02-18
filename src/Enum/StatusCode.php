@@ -1,6 +1,6 @@
 <?php
 
-namespace Router\Enum;
+namespace SimpleRoutes\Enum;
 
 class StatusCode
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Router;
+namespace SimpleRoutes;
 
 use Exception;
-use Router\Enum\StatusCode;
-use Router\RequestMethodsHandler\DeleteRequestMethodHandler;
-use Router\RequestMethodsHandler\GetRequestMethodHandler;
-use Router\RequestMethodsHandler\PostRequestMethodHandler;
-use Router\RequestMethodsHandler\PutRequestMethodHandler;
+use SimpleRoutes\Enum\StatusCode;
+use SimpleRoutes\RequestMethodsHandler\DeleteRequestMethodHandler;
+use SimpleRoutes\RequestMethodsHandler\GetRequestMethodHandler;
+use SimpleRoutes\RequestMethodsHandler\PostRequestMethodHandler;
+use SimpleRoutes\RequestMethodsHandler\PutRequestMethodHandler;
 
 final class Router
 {
