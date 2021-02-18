@@ -97,9 +97,8 @@ final class Router
     {
         $requestURI = self::explodeRequestURI($requestURI);
 
-        $controllerReference = $this->routes[$requestMethod][$requestURI['endpoint']];
-
-        $this->existsRouteOrCry($controllerReference);
+        $registeredRoutes = $this->getRegisteredRoutesByRequestMethodOrCry($requestMethod);
+        $controllerReference = $this->getControllerReferenceOrCry($registeredRoutes, $requestURI['endpoint']);
 
         $requestMethodHandler = (new GetRequestMethodHandler())
             ->setNextRequestMethodHandler((new PostRequestMethodHandler())
@@ -107,17 +106,6 @@ final class Router
                     ->setNextRequestMethodHandler((new DeleteRequestMethodHandler()))));
 
         return $requestMethodHandler->exec($requestMethod, $requestURI, $controllerReference, $requestBody);
-    }
-
-    /**
-     * @param array|null $controllerReference
-     * @throws Exception
-     */
-    private function existsRouteOrCry(?array $controllerReference): void
-    {
-        if (!$controllerReference) {
-            throw new Exception($message = 'Route not found.', $code = StatusCode::NOT_FOUND);
-        }
     }
 
     /**
@@ -147,5 +135,36 @@ final class Router
         } catch (Exception $exception) {
             return json_encode($exception->getMessage());
         }
+    }
+
+    /**
+     * @param string $requestMethod
+     * @return array
+     *
+     * @throws Exception
+     */
+    private function getRegisteredRoutesByRequestMethodOrCry(string $requestMethod): array
+    {
+        if (array_key_exists($requestMethod, $this->routes)) {
+            return $this->routes[$requestMethod];
+        }
+
+        throw new Exception($message = 'Route not found.', $code = StatusCode::NOT_FOUND);
+    }
+
+    /**
+     * @param array $registeredRoutes
+     * @param string $route
+     * @return array
+     *
+     * @throws Exception
+     */
+    private function getControllerReferenceOrCry(array $registeredRoutes, string $route): array
+    {
+        if (array_key_exists($route, $registeredRoutes)) {
+            return $registeredRoutes[$route];
+        }
+
+        throw new Exception($message = 'Route not found.', $code = StatusCode::NOT_FOUND);
     }
 }
