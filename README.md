@@ -11,6 +11,8 @@ To install the package use the command below
 The library uses the RESTFUL API concept , example:
 
 ```php
+<?php
+
 $router = new \SimpleRoutes\Router();
 
 $router->get('/user', \Mocks\UserController::class, 'index');
@@ -48,6 +50,7 @@ There is also the resource method that creates the routes according to the table
 
 ```php
 <?php
+
 $router = new \SimpleRoutes\Router();
 
 $router->resource('/user', \Mocks\UserController::class);
