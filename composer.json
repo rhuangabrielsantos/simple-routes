@@ -1,0 +1,22 @@
+{
+  "name": "rhuangabrielsantos/simple-routes",
+  "description": "A simple library for handling routes",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Router\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mocks\\": "tests/Mock/",
+      "RouterTests\\": "tests/src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
+  "scripts": {
+    "tests": "phpunit --colors tests"
+  }
+}

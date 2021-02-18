@@ -1,0 +1,46 @@
+<?php
+
+namespace RouterTests\RequestMethodsHandler;
+
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
+use Router\Enum\StatusCode;
+use Router\RequestMethodsHandler\PutRequestMethodHandler;
+
+final class PutRequestMethodHandlerTest extends TestCase
+{
+    public function testDeleteRequestMethod_GivenRequestMethodThatCanHandler_ShouldSuccessfulMessage(): void
+    {
+        $postRequestMethod = new PutRequestMethodHandler();
+
+        $response = $postRequestMethod->exec(
+            $requestMethod = 'PUT',
+            $requestURI = ['id' => 1],
+            $controllerReference = ['namespace' => '\Mocks\UserController', 'method' => 'update'],
+            $requestBody = ['name' => 'rhuangabriel']
+        );
+
+        $expectedResponse = [
+            'status' => StatusCode::SUCCESS,
+            'message' => "User with id 1, has updated.",
+            'user' => $requestBody
+        ];
+
+        Assert::assertEquals($expectedResponse, $response);
+    }
+
+    public function testDeleteRequestMethod_GivenRequestMethodThatNotCanHandler_ShouldThrowException(): void
+    {
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('Method not supported');
+        $this->expectExceptionCode(StatusCode::NOT_FOUND);
+
+        $postRequestMethod = new PutRequestMethodHandler();
+        $postRequestMethod->exec(
+            $requestMethod = 'GET',
+            $requestURI = ['id' => 1],
+            $controllerReference = ['namespace' => '\Mocks\UserController', 'method' => 'update'],
+            $requestBody = ['name' => 'rhuangabriel']
+        );
+    }
+}
