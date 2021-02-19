@@ -12,7 +12,7 @@ env:
     - XDEBUG_MODE=coverage
 
 script:
-  - vendor/bin/phpunit --coverage-clover coverage.xml tests
+  - vendor/bin/phpunit --configuration=phpunit.xml --coverage-clover coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
