@@ -128,7 +128,7 @@ final class RouterTest extends TestCase
         Assert::assertEquals($expectedResponseFromTheDeleteRequestMethod, $responseFromTheDeleteRequestMethod);
     }
 
-    public function test(): void
+    public function testRouter_GivenGetRequestMethodForUserRout_UsingHandleRequestMethod_ShouldReturnSuccessfulMessage(): void
     {
         $router = new Router();
         $router->get('/user', UserController::class, 'index');
@@ -146,8 +146,36 @@ final class RouterTest extends TestCase
         Assert::assertEquals($expectedResponse, $response);
     }
 
+    public function testRouter_GivenGetRequestMethodForProductRout_UsingHandleRequestMethodAndProductRoutNotDefined_ShouldThrowException(): void
+    {
+        $router = new Router();
+        $router->get('/user', UserController::class, 'index');
+
+        $_SERVER["REQUEST_METHOD"] = 'GET';
+        $_SERVER['REQUEST_URI'] = '/product';
+
+        $response = $router->handleRequest();
+
+        $expectedResponse = json_encode('Route not found.');
+
+        Assert::assertEquals($expectedResponse, $response);
+    }
+
     public function testRouter_GivenGetRequestMethodForUserRout_WithUserRoutNotDefined_ShouldThrowException(): void
     {
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('Route not found.');
+        $this->expectExceptionCode(StatusCode::NOT_FOUND);
+
+        $router = new Router();
+        $router->dispatch($requestMethod = 'GET', $requestURI = '/user', null);
+    }
+
+    public function testRouter_GivenGetRequestMethodForProductRout_WithProductRoutNotDefined_ShouldThrowException(): void
+    {
+        $router = new Router();
+        $router->get('/user', UserController::class, 'index');
+
         $this->expectException('Exception');
         $this->expectExceptionMessage('Route not found.');
         $this->expectExceptionCode(StatusCode::NOT_FOUND);
