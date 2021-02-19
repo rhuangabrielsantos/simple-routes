@@ -128,6 +128,24 @@ final class RouterTest extends TestCase
         Assert::assertEquals($expectedResponseFromTheDeleteRequestMethod, $responseFromTheDeleteRequestMethod);
     }
 
+    public function test(): void
+    {
+        $router = new Router();
+        $router->get('/user', UserController::class, 'index');
+
+        $_SERVER["REQUEST_METHOD"] = 'GET';
+        $_SERVER['REQUEST_URI'] = '/user';
+
+        $response = $router->handleRequest();
+
+        $expectedResponse = json_encode([
+            ['name' => 'Rhuan Gabriel'],
+            ['name' => 'Eloah Hadassa']
+        ]);
+
+        Assert::assertEquals($expectedResponse, $response);
+    }
+
     public function testRouter_GivenGetRequestMethodForUserRout_WithUserRoutNotDefined_ShouldThrowException(): void
     {
         $this->expectException('Exception');
@@ -136,5 +154,15 @@ final class RouterTest extends TestCase
 
         $router = new Router();
         $router->dispatch($requestMethod = 'GET', $requestURI = '/user', null);
+    }
+
+    public function testRouter_GivenPatchRequestMethodForUserRout_WithUserRoutNotDefined_ShouldThrowException(): void
+    {
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('Route not found.');
+        $this->expectExceptionCode(StatusCode::NOT_FOUND);
+
+        $router = new Router();
+        $router->dispatch($requestMethod = 'PATCH', $requestURI = '/user', null);
     }
 }

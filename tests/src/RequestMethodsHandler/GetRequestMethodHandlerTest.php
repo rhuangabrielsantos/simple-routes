@@ -5,6 +5,7 @@ namespace SimpleRoutesTests\RequestMethodsHandler;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use SimpleRoutes\Enum\StatusCode;
+use SimpleRoutes\RequestMethodsHandler\DeleteRequestMethodHandler;
 use SimpleRoutes\RequestMethodsHandler\GetRequestMethodHandler;
 
 final class GetRequestMethodHandlerTest extends TestCase
@@ -23,6 +24,26 @@ final class GetRequestMethodHandlerTest extends TestCase
         $expectedResponse = [
             ['name' => 'Rhuan Gabriel'],
             ['name' => 'Eloah Hadassa']
+        ];
+
+        Assert::assertEquals($expectedResponse, $response);
+    }
+
+    public function testDeleteRequestMethod_GivenRequestMethodThatCanNotHandler_WithNextRequestMethodCanHandlerRequest_ShouldSuccessfulMessage(): void
+    {
+        $deleteRequestMethod = (new GetRequestMethodHandler())
+            ->setNextRequestMethodHandler(new DeleteRequestMethodHandler());
+
+        $response = $deleteRequestMethod->exec(
+            $requestMethod = 'DELETE',
+            $requestURI = ['id' => 1],
+            $controllerReference = ['namespace' => '\Mocks\UserController', 'method' => 'delete'],
+            null
+        );
+
+        $expectedResponse = [
+            'status' => StatusCode::SUCCESS,
+            'message' => "User with id 1, has deleted."
         ];
 
         Assert::assertEquals($expectedResponse, $response);
