@@ -15,72 +15,56 @@ final class Router
 
     public function get(string $uri, string $class, string $method): void
     {
-        $this->routes['GET'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => $method
-            ]
+        $this->routes['GET'][$uri] = [
+            'namespace' => $class,
+            'method' => $method
         ];
     }
 
     public function post(string $uri, string $class, string $method): void
     {
-        $this->routes['POST'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => $method
-            ]
+        $this->routes['POST'][$uri] = [
+            'namespace' => $class,
+            'method' => $method
         ];
     }
 
     public function put(string $uri, string $class, string $method): void
     {
-        $this->routes['PUT'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => $method
-            ]
+        $this->routes['PUT'][$uri] = [
+            'namespace' => $class,
+            'method' => $method
         ];
     }
 
     public function delete(string $uri, string $class, string $method): void
     {
-        $this->routes['DELETE'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => $method
-            ]
+        $this->routes['DELETE'][$uri] = [
+            'namespace' => $class,
+            'method' => $method
         ];
     }
 
     public function resource(string $uri, string $class): void
     {
-        $this->routes['GET'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => 'index'
-            ]
+        $this->routes['GET'][$uri] = [
+            'namespace' => $class,
+            'method' => 'index'
         ];
 
-        $this->routes['POST'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => 'create'
-            ]
+        $this->routes['POST'][$uri] = [
+            'namespace' => $class,
+            'method' => 'create'
         ];
 
-        $this->routes['PUT'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => 'update'
-            ]
+        $this->routes['PUT'][$uri] = [
+            'namespace' => $class,
+            'method' => 'update'
         ];
 
-        $this->routes['DELETE'] = [
-            $uri => [
-                'namespace' => $class,
-                'method' => 'delete'
-            ]
+        $this->routes['DELETE'][$uri] = [
+            'namespace' => $class,
+            'method' => 'delete'
         ];
     }
 
