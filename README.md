@@ -1,4 +1,15 @@
-![simple-routes](https://socialify.git.ci/rhuangabrielsantos/simple-routes/image?description=1&font=Raleway&forks=1&issues=1&owner=1&pulls=1&stargazers=1&theme=Dark)
+![simple-routes](https://socialify.git.ci/rhuangabrielsantos/simple-routes/image?description=1&font=Raleway&owner=1&theme=Dark)
+
+
+[![Total Downloads](https://img.shields.io/packagist/dt/rhuangabrielsantos/simple-routes?style=flat-square)](https://packagist.org/packages/rhuangabrielsantos/simple-routes)
+![Size](https://img.shields.io/github/languages/code-size/rhuangabrielsantos/simple-routes?style=flat-square)
+[![codecov.io](https://img.shields.io/codecov/c/github/rhuangabrielsantos/simple-routes?style=flat-square)](https://codecov.io/github/rhuangabrielsantos/simple-routes?branch=master)
+[![travis-ci](https://img.shields.io/travis/rhuangabrielsantos/simple-routes?style=flat-square)](https://travis-ci.com/github/rhuangabrielsantos/simple-routes)
+[![Issues](https://img.shields.io/github/issues/rhuangabrielsantos/simple-routes?style=flat-square)](https://github.com/rhuangabrielsantos/simple-routes/issues)
+[![Pull Request's](https://img.shields.io/github/issues-pr/rhuangabrielsantos/simple-routes?style=flat-square)](https://github.com/rhuangabrielsantos/simple-routes/pulls)
+<a href="https://gitmoji.dev">
+  <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+</a>
 
 ## How to install
 
