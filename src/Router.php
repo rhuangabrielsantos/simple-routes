@@ -189,7 +189,7 @@ final class Router
 
     private static function generateRequestParams(string $requestURI, array $controllerReference): array
     {
-        if (isset($controllerReference['idKey']) || is_null($controllerReference['idKey'])) {
+        if (!isset($controllerReference['idKey']) || is_null($controllerReference['idKey'])) {
             return ['id' => null];
         }
 
