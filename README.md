@@ -27,9 +27,10 @@ The library uses the RESTFUL API concept , example:
 $router = new \SimpleRoutes\Router();
 
 $router->get('/user', \Mocks\UserController::class, 'index');
+$router->get('/user/:id', \Mocks\UserController::class, 'index');
 $router->post('/user', \Mocks\UserController::class, 'create');
-$router->put('/user', \Mocks\UserController::class, 'update');
-$router->delete('/user', \Mocks\UserController::class, 'delete');
+$router->put('/user/:id', \Mocks\UserController::class, 'update');
+$router->delete('/user/:id', \Mocks\UserController::class, 'delete');
 
 echo $router->handleRequest();
 ```

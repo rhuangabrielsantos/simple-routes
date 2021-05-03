@@ -15,7 +15,7 @@ final class PostRequestMethodHandler implements RequestMethodHandler
 
     /**
      * @param string $requestMethod
-     * @param array $requestURI
+     * @param array $requestParams
      * @param array $controllerReference
      * @param array|null $requestBody
      *
@@ -23,7 +23,7 @@ final class PostRequestMethodHandler implements RequestMethodHandler
      * @throws ReflectionException
      * @throws Exception
      */
-    public function exec(string $requestMethod, array $requestURI, array $controllerReference, ?array $requestBody): array
+    public function exec(string $requestMethod, array $requestParams, array $controllerReference, ?array $requestBody): array
     {
         if (self::canHandleRequestMethod($requestMethod)) {
             $reflectedController = new ReflectionMethod(
@@ -37,7 +37,7 @@ final class PostRequestMethodHandler implements RequestMethodHandler
         if ($this->hasNextRequestMethod()) {
             return $this->nextRequestMethodHandler->exec(
                 $requestMethod,
-                $requestURI,
+                $requestParams,
                 $controllerReference,
                 $requestBody
             );

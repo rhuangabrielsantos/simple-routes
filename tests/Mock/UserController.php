@@ -9,12 +9,15 @@ final class UserController
     public function index(?int $id): array
     {
         if ($id) {
-            return ['name' => 'Rhuan Gabriel'];
+            return [
+                'name' => 'Rhuan Gabriel',
+                'age' => 23
+            ];
         }
 
         return [
-            ['name' => 'Rhuan Gabriel'],
-            ['name' => 'Eloah Hadassa']
+            ['name' => 'Rhuan Gabriel', 'age' => 23],
+            ['name' => 'Eloah Hadassa', 'age' => 13]
         ];
     }
 
@@ -41,6 +44,13 @@ final class UserController
         return [
             'status' => StatusCode::SUCCESS,
             'message' => "User with id $id, has deleted."
+        ];
+    }
+
+    public function findNameById(int $id): array
+    {
+        return [
+            'name' => 'Rhuan Gabriel'
         ];
     }
 }

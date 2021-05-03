@@ -43,8 +43,8 @@ final class PostRequestMethodHandlerTest extends TestCase
         );
 
         $expectedResponse = [
-            ['name' => 'Rhuan Gabriel'],
-            ['name' => 'Eloah Hadassa']
+            ['name' => 'Rhuan Gabriel', 'age' => 23],
+            ['name' => 'Eloah Hadassa', 'age' => 13]
         ];
 
         Assert::assertEquals($expectedResponse, $response);

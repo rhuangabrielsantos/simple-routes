@@ -15,7 +15,7 @@ final class DeleteRequestMethodHandler implements RequestMethodHandler
 
     /**
      * @param string $requestMethod
-     * @param array $requestURI
+     * @param array $requestParams
      * @param array $controllerReference
      * @param array|null $requestBody
      *
@@ -23,23 +23,22 @@ final class DeleteRequestMethodHandler implements RequestMethodHandler
      * @throws ReflectionException
      * @throws Exception
      */
-    public function exec(string $requestMethod, array $requestURI, array $controllerReference, ?array $requestBody): array
+    public function exec(string $requestMethod, array $requestParams, array $controllerReference, ?array $requestBody): array
     {
         if (self::canHandleRequestMethod($requestMethod)) {
-            $arguments = [intval($requestURI['id'])];
 
             $reflectedController = new ReflectionMethod(
                 $controllerReference['namespace'],
                 $controllerReference['method']
             );
 
-            return $reflectedController->invokeArgs(new $controllerReference['namespace'], $arguments);
+            return $reflectedController->invokeArgs(new $controllerReference['namespace'], [$requestParams['id']]);
         }
 
         if ($this->hasNextRequestMethod()) {
             return $this->nextRequestMethodHandler->exec(
                 $requestMethod,
-                $requestURI,
+                $requestParams,
                 $controllerReference,
                 $requestBody
             );

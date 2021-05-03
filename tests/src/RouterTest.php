@@ -18,9 +18,21 @@ final class RouterTest extends TestCase
         $response = $router->dispatch($requestMethod = 'GET', $requestURI = '/user', null);
 
         $expectedResponse = [
-            ['name' => 'Rhuan Gabriel'],
-            ['name' => 'Eloah Hadassa']
+            ['name' => 'Rhuan Gabriel', 'age' => 23],
+            ['name' => 'Eloah Hadassa', 'age' => 13]
         ];
+
+        Assert::assertEquals($expectedResponse, $response);
+    }
+
+    public function testRouter_GivenGetRequestMethodForUserRout_WithSpecificRout_ShouldReturnUserName(): void
+    {
+        $router = new Router();
+        $router->get('/user/:id/name', UserController::class, 'findNameById');
+
+        $response = $router->dispatch($requestMethod = 'GET', $requestURI = '/user/1/name', null);
+
+        $expectedResponse = ['name' => 'Rhuan Gabriel'];
 
         Assert::assertEquals($expectedResponse, $response);
     }
@@ -28,11 +40,11 @@ final class RouterTest extends TestCase
     public function testRouter_GivenGetRequestMethodForUserRout_WithUserId_ShouldReturnSpecificUser(): void
     {
         $router = new Router();
-        $router->get('/user', UserController::class, 'index');
+        $router->get('/user/:id', UserController::class, 'index');
 
         $response = $router->dispatch($requestMethod = 'GET', $requestURI = '/user/1', null);
 
-        $expectedResponse = ['name' => 'Rhuan Gabriel'];
+        $expectedResponse = ['name' => 'Rhuan Gabriel', 'age' => 23];
 
         Assert::assertEquals($expectedResponse, $response);
     }
@@ -58,7 +70,7 @@ final class RouterTest extends TestCase
     public function testRouter_GivenPutRequestMethodForUserRout_WithUserRoutDefined_ShouldReturnUser(): void
     {
         $router = new Router();
-        $router->put('/user', UserController::class, 'update');
+        $router->put('/user/:id', UserController::class, 'update');
 
         $user = ['name' => 'Rhuan Gabriel'];
 
@@ -76,7 +88,7 @@ final class RouterTest extends TestCase
     public function testRouter_GivenDeleteRequestMethodForUserRout_WithUserRoutDefined_ShouldReturnUserId(): void
     {
         $router = new Router();
-        $router->delete('/user', UserController::class, 'delete');
+        $router->delete('/user/:id', UserController::class, 'delete');
 
         $response = $router->dispatch($requestMethod = 'DELETE', $requestURI = '/user/1', null);
 
@@ -101,8 +113,8 @@ final class RouterTest extends TestCase
         $responseFromTheDeleteRequestMethod = $router->dispatch($requestMethod = 'DELETE', $requestURI = '/user/1', null);
 
         $expectedResponseFromTheGetRequestMethod = [
-            ['name' => 'Rhuan Gabriel'],
-            ['name' => 'Eloah Hadassa']
+            ['name' => 'Rhuan Gabriel', 'age' => 23],
+            ['name' => 'Eloah Hadassa', 'age' => 13]
         ];
 
         $expectedResponseFromThePostRequestMethod = [
@@ -139,8 +151,8 @@ final class RouterTest extends TestCase
         $response = $router->handleRequest();
 
         $expectedResponse = json_encode([
-            ['name' => 'Rhuan Gabriel'],
-            ['name' => 'Eloah Hadassa']
+            ['name' => 'Rhuan Gabriel', 'age' => 23],
+            ['name' => 'Eloah Hadassa', 'age' => 13]
         ]);
 
         Assert::assertEquals($expectedResponse, $response);
